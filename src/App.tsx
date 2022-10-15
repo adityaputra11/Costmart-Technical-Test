@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useState} from 'react';
+import React, {memo, useCallback, useEffect, useState} from 'react';
 import {
   FlatList,
   SafeAreaView,
@@ -6,12 +6,16 @@ import {
   Text,
   TouchableOpacity,
   useColorScheme,
+  NativeModules,
+  Platform,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Button from './components/atoms/button/Button';
 import {products} from './data/product';
 import {IProduct} from './types/IProducts';
+
+const {DeviceInfoModule} = NativeModules;
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -20,7 +24,13 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  console.log('render screen');
+  // console.log('render screen');
+
+  useEffect(() => {
+    DeviceInfoModule.getDeviceId().then((item: any) =>
+      console.log('deviceId', item),
+    );
+  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -53,7 +63,7 @@ const Item = ({
   isSelected: boolean;
   onSelect(): void;
 }) => {
-  console.log('renderItems', name);
+  // console.log('renderItems', name);
   return (
     <TouchableOpacity
       onPress={onSelect}
