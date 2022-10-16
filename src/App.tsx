@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   useColorScheme,
   NativeModules,
-  Platform,
+  View,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -56,65 +56,70 @@ const App = () => {
 
 const Item = ({
   name,
-  isSelected,
-  onSelect,
+  onIncrement,
+  count,
 }: {
   name: string;
-  isSelected: boolean;
-  onSelect(): void;
+  onIncrement(): void;
+  count: number;
 }) => {
   // console.log('renderItems', name);
   return (
-    <TouchableOpacity
-      onPress={onSelect}
-      style={{padding: 20, backgroundColor: isSelected ? 'blue' : '#fff'}}>
+    <View style={{padding: 20, backgroundColor: '#fff'}}>
       <Text>{name} iwi</Text>
-    </TouchableOpacity>
+      <Text>Count: {count}</Text>
+      <TouchableOpacity style={{padding: 20}} onPress={onIncrement}>
+        <Text>OnIncrement</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
-const areEqual = (
-  prevProps: {isSelected: boolean},
-  nextProps: {isSelected: boolean},
-) => {
-  const {isSelected} = nextProps;
-  const {isSelected: prevIsSelected} = prevProps;
+const areEqual = (prevProps: {count: number}, nextProps: {count: number}) => {
+  const {count} = nextProps;
+  const {count: prevCount} = prevProps;
 
   /*if the props are equal, it won't update*/
-  const isSelectedEqual = isSelected === prevIsSelected;
+  const isCountEqual = count === prevCount;
 
-  return isSelectedEqual;
+  return isCountEqual;
 };
 
 const MemoizedItem = memo(Item, areEqual);
 
 const MemoizeList = memo(() => {
-  const [selected, setSelected] = useState('');
+  const [cartList, setCartList] = useState(products);
 
-  const onSetSelected = useCallback((name: string) => {
-    setSelected(prevItem => {
-      prevItem !== name;
-      return name;
-    });
-  }, []);
+  const onIncrement = useCallback(
+    (id: number) => {
+      const tempArr = cartList.map(it => {
+        if (it.id === id) {
+          it.qty++;
+          return it;
+        } else {
+          return it;
+        }
+      });
+      setCartList(tempArr);
+    },
+    [cartList],
+  );
 
   const onSetKeyExtractor = useCallback((item: IProduct) => item.name, []);
 
   const renderItem = ({item}: {item: IProduct}) => {
-    const isSelected: boolean = item.name === selected;
-    const name = item.name;
     return (
       <MemoizedItem
         name={item.name}
-        isSelected={isSelected}
-        onSelect={() => onSetSelected(name)}
+        count={item.qty}
+        onIncrement={onIncrement.bind(null, item.id)}
       />
     );
   };
 
   return (
     <FlatList
-      data={products}
+      data={cartList}
       renderItem={renderItem}
       keyExtractor={onSetKeyExtractor}
     />
