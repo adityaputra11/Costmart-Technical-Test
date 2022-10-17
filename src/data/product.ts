@@ -4,7 +4,7 @@ import {IProducts} from '../types/IProducts';
 export const products: IProducts = [
   {
     id: 1,
-    name: 'Marvee Moistensive Serum',
+    name: 'Marvee Serum',
     category: '1',
     image: image.marvee_moistensive,
     price: 160000,
@@ -54,7 +54,7 @@ export const products: IProducts = [
   },
   {
     id: 6,
-    name: 'Fituno x Ultrasari Kacang Ijo',
+    name: 'Fituno x Ultrasari',
     category: '6',
     price: 80550,
     unitCount: 200,
