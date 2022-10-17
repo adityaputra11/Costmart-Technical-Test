@@ -8,6 +8,8 @@ Android
 <img width="331" alt="Screen Shot 2022-10-17 at 22 40 00" src="https://user-images.githubusercontent.com/24503826/196221635-7ef3d0ab-de06-405a-beee-9ea4c1160140.png">
 
 IOS
+
+
 <img width="328" alt="Screen Shot 2022-10-17 at 22 43 29" src="https://user-images.githubusercontent.com/24503826/196222526-519257fb-1dfa-4704-ba4a-76826220ef64.png">
 
 
@@ -32,7 +34,9 @@ if you have problem on installation please makse sure you have match requiment a
 
 ## Table of Contents
 
-* [Updating to New Releases](#updating-to-new-releases)
+* [How To Install](#how-to-install)
+* [How To Install: Android](#how-to-install-android)
+* [How To Install: IOS](#how-to-install-ios)
 * [Available Scripts](#available-scripts)
   * [npm start](#npm-start)
   * [npm test](#npm-test)
@@ -50,13 +54,32 @@ if you have problem on installation please makse sure you have match requiment a
   * [Networking](#networking)
   * [iOS Simulator won't open](#ios-simulator-wont-open)
 
-## Updating to New Releases
 
-You should only need to update the global installation of `create-react-native-app` very rarely, ideally never.
+## How to Install
+on the project folder run this command
 
-Updating the `react-native-scripts` dependency of your app should be as simple as bumping the version number in `package.json` and reinstalling your project's dependencies.
+```npm install``` or ``` yarn install```
 
-Upgrading to a new version of React Native requires updating the `react-native`, `react`, and `expo` package versions, and setting the correct `sdkVersion` in `app.json`. See the [versioning guide](https://github.com/react-community/create-react-native-app/blob/master/VERSIONS.md) for up-to-date information about package version compatibility.
+## How to Install on Androd
+
+on the project folder run this command
+
+```npm run android``` or ``` yarn android```
+
+make sure you are already run metro server or start metro server with this command
+
+```npm run start``` or ``` yarn start```
+
+if you have problem on installation please rever to #troubleshoot
+
+## How to Install on IOS
+
+on the project folder run this command
+
+```npm run ios``` or ```yarn ios```
+
+if you have problem on installation please rever to #troubleshoot
+
 
 ## Available Scripts
 
