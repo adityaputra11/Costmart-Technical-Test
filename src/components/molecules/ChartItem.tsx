@@ -1,46 +1,54 @@
 import React, {memo} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {color} from '../../helpers/dimens';
+import {color, icon, padding, textSize} from '../../helpers/dimens';
 import {currencyFormatter} from '../../helpers/utils';
+import {IProduct} from '../../types/IProducts';
 import IconButton from '../atoms/button/IconButton';
-
 interface ICartItem {
-  name: string;
+  item: IProduct;
   onIncrement(): void;
-  count: number;
+  onDecrement(): void;
+  onDelete(): void;
 }
 
-const Item = ({name, onIncrement, count}: ICartItem) => {
-  // console.log('renderItems', name);
+const Item = ({item, onIncrement, onDecrement, onDelete}: ICartItem) => {
+  // console.log('renderItems', item.id);
   return (
     <View style={styles.itemCart}>
       <View style={styles.rowOnly}>
         <Image
-          style={styles.logo}
-          source={{
-            uri: 'https://reactnative.dev/img/tiny_logo.png',
-          }}
+          style={styles.image}
+          source={
+            item.image ?? {
+              uri: 'https://reactnative.dev/img/tiny_logo.png',
+            }
+          }
         />
         <View style={styles.row}>
           <View>
-            <Text>{name}</Text>
-            <Text>10 Gram</Text>
+            <Text style={styles.lebelName}>{item.name}</Text>
+            <Text style={styles.labelUnit}>
+              {item.unitCount} {item.unit}
+            </Text>
             <View style={styles.counter}>
-              <TouchableOpacity style={{paddingHorizontal: 10}}>
+              <TouchableOpacity
+                onPress={onDecrement}
+                style={styles.counterButton}>
                 <Text>-</Text>
               </TouchableOpacity>
-              <Text>{count}</Text>
+              <Text>{item.qty}</Text>
               <TouchableOpacity
-                style={{paddingHorizontal: 10}}
+                style={styles.counterButton}
                 onPress={onIncrement}>
                 <Text>+</Text>
               </TouchableOpacity>
             </View>
           </View>
-          <View
-            style={{alignItems: 'flex-end', justifyContent: 'space-evenly'}}>
-            <IconButton />
-            <Text>{currencyFormatter(1000000, 'Rp.')}</Text>
+          <View style={styles.rowEnd}>
+            <IconButton src={icon.close_button} onPress={onDelete} />
+            <Text style={styles.price}>
+              {currencyFormatter(item.price * item.qty, 'Rp.')}
+            </Text>
           </View>
         </View>
       </View>
@@ -48,14 +56,11 @@ const Item = ({name, onIncrement, count}: ICartItem) => {
   );
 };
 
-const areEqual = (prevProps: {count: number}, nextProps: {count: number}) => {
-  const {count} = nextProps;
-  const {count: prevCount} = prevProps;
-
+const areEqual = (prevProps: ICartItem, nextProps: ICartItem) => {
   /*if the props are equal, it won't update*/
-  const isCountEqual = count === prevCount;
+  const isEqual = prevProps.item === nextProps.item;
 
-  return isCountEqual;
+  return isEqual;
 };
 
 const styles = StyleSheet.create({
@@ -67,11 +72,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     borderRadius: 8,
   },
-  logo: {
+  image: {
     width: 58,
     height: 58,
     marginStart: 20,
     alignSelf: 'center',
+    borderWidth: 1,
+    borderColor: color.secondary,
+    borderRadius: padding.xl,
   },
   row: {
     flexDirection: 'row',
@@ -80,6 +88,7 @@ const styles = StyleSheet.create({
     paddingStart: 20,
     flex: 1,
   },
+  rowEnd: {alignItems: 'flex-end', justifyContent: 'space-between'},
   rowOnly: {
     flexDirection: 'row',
     flex: 1,
@@ -92,6 +101,21 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     marginTop: 8,
   },
+  counterButton: {paddingHorizontal: 10},
+  lebelName: {
+    fontWeight: 'bold',
+    fontSize: textSize.md,
+    color: color.primary,
+  },
+  labelUnit: {
+    fontSize: textSize.sm,
+    color: color.gray,
+  },
+  price: {
+    fontSize: textSize.md,
+    color: color.primary,
+  },
 });
 
 export const CartItem = memo(Item, areEqual);
+// export const CartItem = Item;

@@ -5,17 +5,16 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import {icon} from '../../../helpers/dimens';
 
 interface IIconButton {
-  uri?: ImageSourcePropType;
+  src?: ImageSourcePropType;
   onPress?(): void;
 }
 
-export const IconButton = ({uri, onPress}: IIconButton) => {
+export const IconButton = ({src, onPress}: IIconButton) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <Image style={styles.img} source={icon.close_button} />
+      <Image style={styles.img} source={src} />
     </TouchableOpacity>
   );
 };
