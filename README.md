@@ -45,7 +45,6 @@ if you have problem on installation please makse sure you have match requiment a
 * [Writing and Running Tests](#writing-and-running-tests)
 * [Environment Variables](#environment-variables)
   * [Configuring Packager IP Address](#configuring-packager-ip-address)
-* [Adding Flow](#adding-flow)
 * [Customizing App Display Name and Icon](#customizing-app-display-name-and-icon)
 * [Troubleshooting](#troubleshooting)
   * [Networking](#networking)
@@ -153,42 +152,6 @@ npm start
 
 The above example would cause the development server to listen on `exp://my-custom-ip-address-or-hostname:19000`.
 
-## Adding Flow
-
-Flow is a static type checker that helps you write code with fewer bugs. Check out this [introduction to using static types in JavaScript](https://medium.com/@preethikasireddy/why-use-static-types-in-javascript-part-1-8382da1e0adb) if you are new to this concept.
-
-React Native works with [Flow](http://flowtype.org/) out of the box, as long as your Flow version matches the one used in the version of React Native.
-
-To add a local dependency to the correct Flow version to a Create React Native App project, follow these steps:
-
-1. Find the Flow `[version]` at the bottom of the included [.flowconfig](.flowconfig)
-2. Run `npm install --save-dev flow-bin@x.y.z` (or `yarn add --dev flow-bin@x.y.z`), where `x.y.z` is the .flowconfig version number.
-3. Add `"flow": "flow"` to the `scripts` section of your `package.json`.
-4. Add `// @flow` to any files you want to type check (for example, to `App.js`).
-
-Now you can run `npm run flow` (or `yarn flow`) to check the files for type errors.
-You can optionally use a [plugin for your IDE or editor](https://flow.org/en/docs/editors/) for a better integrated experience.
-
-To learn more about Flow, check out [its documentation](https://flow.org/).
-
-## Sharing and Deployment
-
-Create React Native App does a lot of work to make app setup and development simple and straightforward, but it's very difficult to do the same for deploying to Apple's App Store or Google's Play Store without relying on a hosted service.
-
-### Publishing to Expo's React Native Community
-
-Expo provides free hosting for the JS-only apps created by CRNA, allowing you to share your app through the Expo client app. This requires registration for an Expo account.
-
-Install the `exp` command-line tool, and run the publish command:
-
-```
-$ npm i -g exp
-$ exp publish
-```
-
-### Building an Expo "standalone" app
-
-You can also use a service like [Expo's standalone builds](https://docs.expo.io/versions/latest/guides/building-standalone-apps.html) if you want to get an IPA/APK for distribution without having to build the native code yourself.
 
 ### Ejecting from Create React Native App
 
