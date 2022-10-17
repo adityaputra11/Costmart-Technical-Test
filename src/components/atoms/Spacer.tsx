@@ -6,6 +6,7 @@ interface ISpacer {
   height?: number;
 }
 
+//Inspired by Jetpack Compose Spacer
 export const Spacer = (style: ISpacer) => {
   // eslint-disable-next-line react/react-in-jsx-scope
   return <View style={{width: style.width ?? 0, height: style.height ?? 0}} />;
