@@ -35,8 +35,8 @@ if you have problem on installation please makse sure you have match requiment a
 ## Table of Contents
 
 * [How To Install](#how-to-install)
-* [How To Install: Android](#how-to-install-android)
-* [How To Install: IOS](#how-to-install-ios)
+* [How To Install Android](#how-to-install-android)
+* [How To Install IOS](#how-to-install-ios)
 * [Available Scripts](#available-scripts)
   * [npm start](#npm-start)
   * [npm test](#npm-test)
