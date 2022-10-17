@@ -31,6 +31,10 @@ for making this project using this requirement
 
 if you have problem on installation please makse sure you have match requiment as above
 
+## Notes
+
+All Task already done and mark by (/** Task *)
+
 
 ## Table of Contents
 
