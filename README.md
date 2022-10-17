@@ -1,13 +1,34 @@
 # Alami-technical-test
 Technical test for Alami
 
-React Native CartList
+CartList
+
+Android
+
+<img width="331" alt="Screen Shot 2022-10-17 at 22 40 00" src="https://user-images.githubusercontent.com/24503826/196221635-7ef3d0ab-de06-405a-beee-9ea4c1160140.png">
+
+IOS
+<img width="328" alt="Screen Shot 2022-10-17 at 22 43 29" src="https://user-images.githubusercontent.com/24503826/196222526-519257fb-1dfa-4704-ba4a-76826220ef64.png">
+
+
 
 ## Setup
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
+
+## Requirement
+for making this project using this requirement
+- node v14.20.0
+- java v11
+- yarn v1.22.18
+- android sdk29
+- ios 15.5
+- react-native cli V9.1.3
+
+if you have problem on installation please makse sure you have match requiment as above
+
 
 ## Table of Contents
 
@@ -17,22 +38,17 @@ Below you'll find information about performing common tasks. The most recent ver
   * [npm test](#npm-test)
   * [npm run ios](#npm-run-ios)
   * [npm run android](#npm-run-android)
-  * [npm run eject](#npm-run-eject)
 * [Writing and Running Tests](#writing-and-running-tests)
 * [Environment Variables](#environment-variables)
   * [Configuring Packager IP Address](#configuring-packager-ip-address)
 * [Adding Flow](#adding-flow)
 * [Customizing App Display Name and Icon](#customizing-app-display-name-and-icon)
 * [Sharing and Deployment](#sharing-and-deployment)
-  * [Publishing to Expo's React Native Community](#publishing-to-expos-react-native-community)
-  * [Building an Expo "standalone" app](#building-an-expo-standalone-app)
-  * [Ejecting from Create React Native App](#ejecting-from-create-react-native-app)
     * [Build Dependencies (Xcode & Android Studio)](#build-dependencies-xcode-android-studio)
     * [Should I Use ExpoKit?](#should-i-use-expokit)
 * [Troubleshooting](#troubleshooting)
   * [Networking](#networking)
   * [iOS Simulator won't open](#ios-simulator-wont-open)
-  * [QR Code does not scan](#qr-code-does-not-scan)
 
 ## Updating to New Releases
 
@@ -50,7 +66,6 @@ If Yarn was installed when the project was initialized, then dependencies will h
 
 Runs your app in development mode.
 
-Open it in the [Expo app](https://expo.io) on your phone to view it. It will reload if you save edits to your files, and you will see build errors and logs in the terminal.
 
 Sometimes you may need to reset or clear the React Native packager's cache. To do so, you can pass the `--reset-cache` flag to the start script:
 
@@ -83,19 +98,6 @@ Like `npm start`, but also attempts to open your app on a connected Android devi
 2. Add the Genymotion tools directory to your path (instructions for [Mac](http://osxdaily.com/2014/08/14/add-new-path-to-path-command-line/), [Linux](http://www.computerhope.com/issues/ch001647.htm), and [Windows](https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/)).
 3. Make sure that you can run adb from your terminal.
 
-#### `npm run eject`
-
-This will start the process of "ejecting" from Create React Native App's build scripts. You'll be asked a couple of questions about how you'd like to build your project.
-
-**Warning:** Running eject is a permanent action (aside from whatever version control system you use). An ejected app will require you to have an [Xcode and/or Android Studio environment](https://facebook.github.io/react-native/docs/getting-started.html) set up.
-
-## Customizing App Display Name and Icon
-
-You can edit `app.json` to include [configuration keys](https://docs.expo.io/versions/latest/guides/configuration.html) under the `expo` key.
-
-To change your app's display name, set the `expo.name` key in `app.json` to an appropriate string.
-
-To set an app icon, set the `expo.icon` key in `app.json` to be either a local path or a URL. It's recommended that you use a 512x512 png file with transparency.
 
 ## Writing and Running Tests
 
@@ -174,11 +176,16 @@ If you want to build and deploy your app yourself, you'll need to eject from CRN
 
 This is usually as simple as running `npm run eject` in your project, which will walk you through the process. Make sure to install `react-native-cli` and follow the [native code getting started guide for React Native](https://facebook.github.io/react-native/docs/getting-started.html).
 
-#### Should I Use ExpoKit?
-
-If you have made use of Expo APIs while working on your project, then those API calls will stop working if you eject to a regular React Native project. If you want to continue using those APIs, you can eject to "React Native + ExpoKit" which will still allow you to build your own native code and continue using the Expo APIs. See the [ejecting guide](https://github.com/react-community/create-react-native-app/blob/master/EJECTING.md) for more details about this option.
 
 ## Troubleshooting
+
+## Adb Problem
+
+make sure port 8081 has access on adb emulator
+
+```
+adb reverse tcp:8081 tcp:8081
+```
 
 ### Networking
 
@@ -219,9 +226,3 @@ There are a few steps you may want to take to troubleshoot these kinds of errors
 1. Make sure Xcode is installed and open it to accept the license agreement if it prompts you. You can install it from the Mac App Store.
 2. Open Xcode's Preferences, the Locations tab, and make sure that the `Command Line Tools` menu option is set to something. Sometimes when the CLI tools are first installed by Homebrew this option is left blank, which can prevent Apple utilities from finding the simulator. Make sure to re-run `npm/yarn run ios` after doing so.
 3. If that doesn't work, open the Simulator, and under the app menu select `Reset Contents and Settings...`. After that has finished, quit the Simulator, and re-run `npm/yarn run ios`.
-
-### QR Code does not scan
-
-If you're not able to scan the QR code, make sure your phone's camera is focusing correctly, and also make sure that the contrast on the two colors in your terminal is high enough. For example, WebStorm's default themes may [not have enough contrast](https://github.com/react-community/create-react-native-app/issues/49) for terminal QR codes to be scannable with the system barcode scanners that the Expo app uses.
-
-If this causes problems for you, you may want to try changing your terminal's color theme to have more contrast, or running Create React Native App from a different terminal. You can also manually enter the URL printed by the packager script in the Expo app's search bar to load it manually.
