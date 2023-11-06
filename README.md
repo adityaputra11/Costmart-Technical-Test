@@ -1,5 +1,5 @@
-# Alami-technical-test
-Technical test for Alami
+# Costmart-Technical Test
+Technical test for Costmart
 
 CartList
 
